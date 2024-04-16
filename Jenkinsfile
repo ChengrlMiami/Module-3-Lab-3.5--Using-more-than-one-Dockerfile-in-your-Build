@@ -54,7 +54,7 @@ pipeline {
             }
         }
 
-       stage('Deploy to Prod Environment') {
+        stage('Deploy to Prod Environment') {
             steps {
                 script {
                     // Set up Kubernetes configuration using the specified KUBECONFIG
@@ -65,7 +65,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Check Kubernetes Cluster') {
             steps {
                 script {
@@ -74,8 +74,8 @@ pipeline {
             }
         }
     }
-    post {
 
+    post {
         success {
             slackSend color: "good", message: "Build Completed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
         }
@@ -87,4 +87,3 @@ pipeline {
         }
     }
 }
-
